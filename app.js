@@ -17,30 +17,29 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
   };
 });
 
-const recordButton = document.getElementById('recordButton');
-const stopButton = document.getElementById('stopButton');
+const recordButton = document.getElementById("recordButton");
+const stopButton = document.getElementById("stopButton");
 
-recordButton.addEventListener('click', () => {
+recordButton.addEventListener("click", () => {
   mediaRecorder.start();
   recordButton.disabled = true;
   stopButton.disabled = false;
 });
 
-stopButton.addEventListener('click', () => {
+stopButton.addEventListener("click", () => {
   mediaRecorder.stop();
   recordButton.disabled = false;
   stopButton.disabled = true;
   chunks = [];
 });
 
-
 mediaRecorder.onstop = () => {
-    const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
-    const audioURL = URL.createObjectURL(blob);
-    const audioElement = document.getElementById('audioElement');
-    audioElement.src = audioURL;
-    chunks = [];
-    
-    // Remove the src attribute to disable download
-    audioElement.removeAttribute('src');
-  };
+  const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+  const audioURL = URL.createObjectURL(blob);
+  const audioElement = document.getElementById("audioElement");
+  audioElement.src = audioURL;
+  chunks = [];
+
+  // Remove the src attribute to disable download
+  audioElement.removeAttribute("src");
+};
